@@ -32,36 +32,34 @@ function Menu() {
       <List>
         {[
           {
-            text: "My Pills",
+            text: "Create Schedule",
 
             path: "/pills",
           },
           {
-            text: "Friends",
+            text: "Workers",
           },
           {
-            text: "Random",
+            text: "",
           },
         ].map((obj) => (
           <ListItem
             onClick={() => navigateOnClick(obj.path)}
             key={obj.text}
             disablePadding
+            sx={{ paddingTop: "3em" }}
           >
             <ListItemButton>
               <ListItemIcon>{obj.icon}</ListItemIcon>
               <ListItemText
                 primary={obj.text}
-                style={{
+                sx={{
                   color: "darkcyan",
-                  fontWeight: "bold !important  ",
-                  fontSize: "6em",
+                  fontFamily: "monospace",
+                  fontWeight: "bold",
+                  fontSize: "1.5em",
                 }}
-                // sx={{
-                //   color: "darkcyan",
-                //   //   fontFamily: "monospace",
-                //   fontWeight: "bold",
-                // }}
+                disableTypography
               />
             </ListItemButton>
           </ListItem>
