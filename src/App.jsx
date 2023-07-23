@@ -1,12 +1,17 @@
 import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Menu from "./components/Menu";
+import Workers from "./components/Workers/Workers";
 
 function App() {
   return (
-    <div>
+    <div style={{ height: "100%" }}>
       <Menu></Menu>
-      <Home></Home>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/workers" element={<Workers />}></Route>
+      </Routes>
     </div>
   );
 }

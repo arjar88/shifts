@@ -5,9 +5,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { useNavigate } from "react-router-dom";
 
-function Menu() {
+const Menu = () => {
   const drawerWidth = 240;
+  const navigate = useNavigate();
+  const navigateOnClick = (path) => {
+    navigate(path);
+  };
 
   return (
     <Drawer
@@ -38,6 +43,7 @@ function Menu() {
           },
           {
             text: "Workers",
+            path: "/workers",
           },
           {
             text: "",
@@ -67,5 +73,5 @@ function Menu() {
       </List>
     </Drawer>
   );
-}
+};
 export default Menu;
