@@ -6,7 +6,7 @@ import Workers from "./components/Workers/Workers";
 
 function App() {
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: "100%", display: "flex" }}>
       <Menu></Menu>
       <Routes>
         <Route path="/" element={<Home />}></Route>
