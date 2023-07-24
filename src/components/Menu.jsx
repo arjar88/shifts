@@ -38,8 +38,7 @@ const Menu = () => {
         {[
           {
             text: "Create Schedule",
-
-            path: "/pills",
+            path: "/",
           },
           {
             text: "Workers",
