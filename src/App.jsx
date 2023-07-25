@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Menu from "./components/Menu";
 import Workers from "./components/Workers/Workers";
+import WorkerInfo from "./components/Workers/WorkerInfo";
 import Grid from "@mui/material/Grid";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/workers" element={<Workers />}></Route>
+            <Route path="/workerinfo" element={<WorkerInfo />}></Route>
           </Routes>
         </Grid>
       </Grid>
