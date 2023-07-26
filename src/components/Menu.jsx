@@ -5,7 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaWarehouse } from "react-icons/fa";
 import { AiFillSchedule } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
@@ -58,7 +58,8 @@ const Menu = () => {
             icon: <FaUser style={{ color: "pink", fontSize: "1em" }} />,
           },
           {
-            text: "",
+            text: "Inventory",
+            icon: <FaWarehouse style={{ color: "cyan", fontSize: "1em" }} />,
           },
         ].map((obj) => (
           <ListItem
