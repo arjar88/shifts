@@ -29,7 +29,7 @@ const WorkerCard = ({ name }) => {
             alignItems="center"
           >
             <Grid item>
-              <Avatar alt="Remy Sharp" src="" sx={{ width: 56, height: 56 }} />
+              <Avatar alt="Remy Sharp" sx={{ width: 56, height: 56 }} />
             </Grid>
             <Grid item style={{ marginTop: -20 }}>
               <Typography

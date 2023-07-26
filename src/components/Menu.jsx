@@ -5,6 +5,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { FaUser } from "react-icons/fa";
+import { AiFillSchedule } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
@@ -16,8 +18,15 @@ const Menu = () => {
 
   return (
     <Drawer
+      PaperProps={{
+        sx: {
+          backgroundColor: "black",
+        },
+      }}
       sx={{
         width: drawerWidth,
+        backgroundColor: "pink",
+        color: "red",
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
@@ -39,10 +48,14 @@ const Menu = () => {
           {
             text: "Create Schedule",
             path: "/",
+            icon: (
+              <AiFillSchedule style={{ color: "purple", fontSize: "1.2em" }} />
+            ),
           },
           {
             text: "Workers",
             path: "/workers",
+            icon: <FaUser style={{ color: "pink", fontSize: "1em" }} />,
           },
           {
             text: "",
@@ -55,14 +68,16 @@ const Menu = () => {
             sx={{ paddingTop: "3em" }}
           >
             <ListItemButton>
-              <ListItemIcon>{obj.icon}</ListItemIcon>
+              <ListItemIcon style={{ marginRight: "-1em" }}>
+                {obj.icon}
+              </ListItemIcon>
               <ListItemText
                 primary={obj.text}
                 sx={{
                   color: "darkcyan",
                   fontFamily: "monospace",
                   fontWeight: "bold",
-                  fontSize: "1.5em",
+                  fontSize: "1.4em",
                 }}
                 disableTypography
               />
