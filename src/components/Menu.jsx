@@ -49,7 +49,7 @@ const Menu = () => {
             text: "Create Schedule",
             path: "/",
             icon: (
-              <AiFillSchedule style={{ color: "purple", fontSize: "1.2em" }} />
+              <AiFillSchedule style={{ color: "purple", fontSize: "1.3em" }} />
             ),
           },
           {

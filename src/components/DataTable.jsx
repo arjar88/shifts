@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -31,22 +31,49 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const DataTable = () => {
-  const headers = ["Name", "Age", "Salary", "Location"];
+  const headers = [
+    "First Name",
+    "Last Name",
+    "Age",
+    "Salary",
+    "Travel",
+    "Location",
+    "Phone Number",
+    "Email",
+    "101 Form",
+  ];
   const [rows, setRows] = useState([
-    { name: "Chana leah", age: 23, salary: 50, location: "Ashdod" },
+    {
+      fName: "Chana leah",
+      lName: "Levin",
+      age: 23,
+      salary: 50,
+      travel: true,
+      location: "Ashdod",
+      pNumber: "0503323456",
+      email: "worker@gmail.com",
+      formFilled: true,
+    },
   ]);
+
+  console.log("re rendered");
 
   const [rowIndex, setRowIndex] = useState(-1);
   const [columnIndex, setColumnIndex] = useState(-1);
+  const [temp, setTemp] = useState("");
 
   //make the table reactive
   const handleTextFieldChange = (rowId, colName, value) => {
     rows[rowId][colName] = value;
+    setRows([...rows]);
   };
 
-  const handleExit = () => {
+  const handleExit = (rowId, columnName) => {
+    debugger;
     setRowIndex(-1);
     setColumnIndex(-1);
+    handleTextFieldChange(rowId, columnName, temp);
+    setTemp("");
   };
 
   return (
@@ -74,19 +101,40 @@ const DataTable = () => {
                 >
                   {rowIndex === index && columnIndex === 0 ? (
                     <TextField
-                      placeholder={row.name}
-                      defaultValue={rows[index]["name"]}
-                      onChange={(event) =>
-                        handleTextFieldChange(index, "name", event.target.value)
-                      }
+                      placeholder={row.fName}
+                      defaultValue={rows[index]["fName"]}
+                      onChange={(event) => setTemp(event.target.value)}
                       onKeyUp={(e) => {
                         if (e.key === "Enter") {
-                          handleExit();
+                          //the e.target.value here is not the same onchnge event
+                          handleExit(index, "fName");
                         }
                       }}
                     />
                   ) : (
-                    row.name
+                    row.fName
+                  )}
+                </StyledTableCell>
+                <StyledTableCell
+                  onClick={() => {
+                    setRowIndex(index);
+                    setColumnIndex(0);
+                  }}
+                  scope="row"
+                >
+                  {rowIndex === index && columnIndex === 0 ? (
+                    <TextField
+                      placeholder={row.fName}
+                      defaultValue={rows[index]["lName"]}
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                          //the e.target.value here is not the same onchnge event
+                          handleExit(index, "lName", e.target.value);
+                        }
+                      }}
+                    />
+                  ) : (
+                    row.lName
                   )}
                 </StyledTableCell>
                 <StyledTableCell
@@ -98,7 +146,7 @@ const DataTable = () => {
                 >
                   {rowIndex === index && columnIndex === 1 ? (
                     <TextField
-                      placeholder={row.name}
+                      placeholder={row.age}
                       defaultValue={rows[index]["age"]}
                       onChange={(event) =>
                         handleTextFieldChange(index, "age", event.target.value)
@@ -122,7 +170,7 @@ const DataTable = () => {
                 >
                   {rowIndex === index && columnIndex === 2 ? (
                     <TextField
-                      placeholder={row.name}
+                      placeholder={row.salary}
                       defaultValue={rows[index]["salary"]}
                       onChange={(event) =>
                         handleTextFieldChange(
@@ -144,13 +192,35 @@ const DataTable = () => {
                 <StyledTableCell
                   onClick={() => {
                     setRowIndex(index);
+                    setColumnIndex(0);
+                  }}
+                  scope="row"
+                >
+                  {rowIndex === index && columnIndex === 3 ? (
+                    <TextField
+                      placeholder={row.travel}
+                      defaultValue={rows[index]["travel"]}
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                          //the e.target.value here is not the same onchnge event
+                          handleExit(index, "age", e.target.value);
+                        }
+                      }}
+                    />
+                  ) : (
+                    row.travel
+                  )}
+                </StyledTableCell>
+                <StyledTableCell
+                  onClick={() => {
+                    setRowIndex(index);
                     setColumnIndex(3);
                   }}
                   align="left"
                 >
-                  {rowIndex === index && columnIndex === 3 ? (
+                  {rowIndex === index && columnIndex === 4 ? (
                     <TextField
-                      placeholder={row.name}
+                      placeholder={row.location}
                       defaultValue={rows[index]["location"]}
                       onChange={(event) =>
                         handleTextFieldChange(
