@@ -9,7 +9,13 @@ const Schedule = () => {
   return (
     <div>
       <ScheduleDataTable workers={workers}></ScheduleDataTable>
-      <Button></Button>
+      <Button
+        sx={{ height: "1.6em", textTransform: "none" }}
+        size="large"
+        variant="contained"
+      >
+        Create Schedule
+      </Button>
     </div>
   );
 };
