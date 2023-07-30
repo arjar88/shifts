@@ -8,7 +8,6 @@ import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 
 const WorkerCard = ({ name }) => {
-  console.log("was in worker component");
   return (
     <div>
       <Card

@@ -43,19 +43,7 @@ const DataTable = () => {
     "Email",
     "101 Form",
   ];
-  const [rows, setRows] = useState([
-    {
-      fName: "Chana leah",
-      lName: "Levin",
-      age: 23,
-      salary: 50,
-      travel: true,
-      location: "Ashdod",
-      pNumber: "0503323456",
-      email: "worker@gmail.com",
-      formFilled: true,
-    },
-  ]);
+  const [rows, setRows] = useState([]);
 
   console.log("re rendered");
 
