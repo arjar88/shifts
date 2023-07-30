@@ -1,4 +1,4 @@
-import DataTable from "../DataTable";
+import DataTable from "../WorkerDataTable";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 
 const WorkerInfo = () => {
