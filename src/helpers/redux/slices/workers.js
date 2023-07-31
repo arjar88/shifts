@@ -5,6 +5,7 @@ export const workersSlice = createSlice({
   initialState: {
     workers: [
       {
+        id: 3232,
         fName: "Chana leah",
         lName: "Levin",
         age: 23,
@@ -18,6 +19,7 @@ export const workersSlice = createSlice({
         weekTwo: { morning: true, night: false },
       },
       {
+        id: 3443433,
         fName: "John",
         lName: "Doe",
         age: 30,
@@ -31,6 +33,7 @@ export const workersSlice = createSlice({
         weekTwo: { morning: false, night: true },
       },
       {
+        id: 38978732,
         fName: "Emma",
         lName: "Smith",
         age: 28,
@@ -44,6 +47,7 @@ export const workersSlice = createSlice({
         weekTwo: { morning: false, night: false },
       },
       {
+        id: 2121232,
         fName: "Michael",
         lName: "Johnson",
         age: 35,
@@ -57,6 +61,7 @@ export const workersSlice = createSlice({
         weekTwo: { morning: true, night: false },
       },
       {
+        id: 33232232,
         fName: "Sophia",
         lName: "Garcia",
         age: 25,

@@ -252,16 +252,24 @@ export default function ScheduleDataTable({ workers }) {
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, id) => {
+    debugger;
+    const selectedIndex = selected.indexOf(id);
     let newSelected = [];
-
+    // Case 1: Clicked row is not selected
+    // Add the clicked row (identified by id) to the selected rows
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
+      // Case 2: Clicked row is the first element in the selected array
+      // Remove the clicked row from the selected rows by skipping the first element
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
+      // Case 3: Clicked row is the last element in the selected array
+      // Remove the clicked row from the selected rows by excluding the last element
     } else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
+      // Case 4: Clicked row is somewhere in the middle of the selected array
+      // Remove the clicked row from the selected rows by excluding the element at selectedIndex
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
@@ -281,6 +289,7 @@ export default function ScheduleDataTable({ workers }) {
     setPage(0);
   };
 
+  //checks if row is in the selected array
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -312,17 +321,18 @@ export default function ScheduleDataTable({ workers }) {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.name);
+                console.log(row);
+                const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name)}
+                    onClick={(event) => handleClick(event, row.id)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.name}
+                    key={row.id}
                     selected={isItemSelected}
                     sx={{ cursor: "pointer" }}
                   >
