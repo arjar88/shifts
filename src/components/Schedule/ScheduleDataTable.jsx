@@ -18,6 +18,7 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import Chip from "@mui/material/Chip";
 import { visuallyHidden } from "@mui/utils";
 import { Grid } from "@mui/material";
 
@@ -51,6 +52,21 @@ function stableSort(array, comparator) {
     return a[1] - b[1];
   });
   return stabilizedThis.map((el) => el[0]);
+}
+
+function roleColor(roleId) {
+  switch (roleId) {
+    case 1:
+      return "blue";
+    case 2:
+      return "red";
+    case 3:
+      return "purple";
+    case 4:
+      return "green";
+    case 5:
+      return "yellow";
+  }
 }
 
 const headCells = [
@@ -103,10 +119,10 @@ const headCells = [
     label: "Email",
   },
   {
-    id: "101 Form",
+    id: "Role",
     numeric: true,
     disablePadding: false,
-    label: "101 Form",
+    label: "Role",
   },
   {
     id: "Week One",
@@ -213,7 +229,7 @@ function EnhancedTableToolbar(props) {
       ) : (
         <Typography
           sx={{ flex: "1 1 100%" }}
-          variant="h6"
+          variant="h5"
           id="tableTitle"
           component="div"
         >
@@ -333,7 +349,6 @@ export default function ScheduleDataTable({ workers }) {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                console.log(row);
                 const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -375,7 +390,14 @@ export default function ScheduleDataTable({ workers }) {
                     <TableCell align="right">{row.location}</TableCell>
                     <TableCell align="right">{row.pNumber}</TableCell>
                     <TableCell align="right">{row.email}</TableCell>
-                    <TableCell align="right">{row.formFilled}</TableCell>
+                    <TableCell align="right">
+                      <Chip
+                        label={row.role.title}
+                        style={{
+                          backgroundColor: roleColor(row.role.roleId),
+                        }}
+                      ></Chip>
+                    </TableCell>
                     <TableCell align="right">
                       <Grid container direction="column">
                         <Grid item>
