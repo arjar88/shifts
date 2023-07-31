@@ -253,7 +253,6 @@ export default function ScheduleDataTable({ workers }) {
   };
 
   const handleClick = (event, id) => {
-    debugger;
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
     // Case 1: Clicked row is not selected
