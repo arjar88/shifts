@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 const Schedule = () => {
   const { workers } = useSelector((state) => state.workers);
 
+  const createSchedule = (selectedWorkers) => {};
+
   return (
     <div>
       <ScheduleDataTable workers={workers}></ScheduleDataTable>

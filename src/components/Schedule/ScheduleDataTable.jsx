@@ -65,7 +65,7 @@ function roleColor(roleId) {
     case 4:
       return "green";
     case 5:
-      return "yellow";
+      return "orange";
   }
 }
 
@@ -395,6 +395,11 @@ export default function ScheduleDataTable({ workers }) {
                         label={row.role.title}
                         style={{
                           backgroundColor: roleColor(row.role.roleId),
+                        }}
+                        sx={{
+                          "& .MuiChip-label": {
+                            color: "white",
+                          },
                         }}
                       ></Chip>
                     </TableCell>
