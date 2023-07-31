@@ -19,6 +19,7 @@ import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+import { Grid } from "@mui/material";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -106,6 +107,18 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     label: "101 Form",
+  },
+  {
+    id: "Week One",
+    numeric: true,
+    disablePadding: false,
+    label: "Week One",
+  },
+  {
+    id: "Week Two",
+    numeric: true,
+    disablePadding: false,
+    label: "Week Two",
   },
 ];
 
@@ -327,7 +340,6 @@ export default function ScheduleDataTable({ workers }) {
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.id)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -337,6 +349,7 @@ export default function ScheduleDataTable({ workers }) {
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
+                        onClick={(event) => handleClick(event, row.id)}
                         color="primary"
                         checked={isItemSelected}
                         inputProps={{
@@ -356,11 +369,37 @@ export default function ScheduleDataTable({ workers }) {
                     <TableCell align="right">{row.lName}</TableCell>
                     <TableCell align="right">{row.age}</TableCell>
                     <TableCell align="right">{row.salary}</TableCell>
-                    <TableCell align="right">{row.travel}</TableCell>
+                    <TableCell align="right">
+                      <Checkbox checked={row.travel} />
+                    </TableCell>
                     <TableCell align="right">{row.location}</TableCell>
                     <TableCell align="right">{row.pNumber}</TableCell>
                     <TableCell align="right">{row.email}</TableCell>
                     <TableCell align="right">{row.formFilled}</TableCell>
+                    <TableCell align="right">
+                      <Grid container direction="column">
+                        <Grid item>
+                          <span>Morning </span>
+                          <Checkbox checked={row.weekOne.morning} />
+                        </Grid>
+                        <Grid item>
+                          <span>Night </span>
+                          <Checkbox checked={row.weekOne.night} />
+                        </Grid>
+                      </Grid>
+                    </TableCell>
+                    <TableCell align="right">
+                      <Grid container direction="column">
+                        <Grid item>
+                          <span>Morning </span>
+                          <Checkbox checked={row.weekTwo.morning} />
+                        </Grid>
+                        <Grid item>
+                          <span>Night </span>
+                          <Checkbox checked={row.weekTwo.night} />
+                        </Grid>
+                      </Grid>
+                    </TableCell>
                   </TableRow>
                 );
               })}
