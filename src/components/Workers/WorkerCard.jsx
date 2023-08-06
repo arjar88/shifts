@@ -4,14 +4,20 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/system/Unstable_Grid/Grid";
+import { useNavigate } from "react-router-dom";
 
-const WorkerCard = ({ name }) => {
+const WorkerCard = ({ fName, lName }) => {
+  const navigate = useNavigate();
+
+  const handleSeeWorker = () => {
+    navigate("/workerinfo");
+  };
   return (
     <div>
       <Card
         sx={{
-          width: "11em",
-          height: "18em",
+          width: "12em",
+          height: "17em",
           boxShadow: "3em",
           marginTop: "1em",
         }}
@@ -32,20 +38,21 @@ const WorkerCard = ({ name }) => {
               <Typography
                 sx={{
                   fontSize: "1.2em",
-                  marginTop: "1em",
+                  marginTop: "0.5em",
                 }}
                 color="text.secondary"
               >
-                {name}
+                {fName + " " + lName}
               </Typography>
             </Grid>
-            <Grid item style={{ marginTop: "1em" }}>
+            <Grid item>
               <Button
+                onClick={() => handleSeeWorker()}
                 sx={{ height: "1.6em", textTransform: "none" }}
                 size="large"
                 variant="contained"
               >
-                <Typography>See Worker</Typography>
+                <Typography>Worker Info</Typography>
               </Button>
             </Grid>
           </Grid>

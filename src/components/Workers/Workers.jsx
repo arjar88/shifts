@@ -1,14 +1,27 @@
 import { display } from "@mui/system";
+import { useSelector } from "react-redux";
 import WorkerCard from "./WorkerCard";
+import Grid from "@mui/material/Grid";
 
+//will display the worker cards to see overall workers.
 const Workers = () => {
-  const worker = [{ name: "james" }, { name: "chargels" }, { name: "jerome" }];
+  const { workers } = useSelector((state) => state.workers);
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
-      {worker.map((w, i) => (
-        <WorkerCard key={i} name={w.name} />
-      ))}
+    <div>
+      <Grid
+        container
+        direction="row"
+        justifyContent="start"
+        alignItems="center"
+        spacing={5}
+      >
+        {workers.map((w, i) => (
+          <Grid key={i} item>
+            <WorkerCard fName={w.fName} lName={w.lName} />
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 };
