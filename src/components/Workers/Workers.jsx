@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 
 //will display the worker cards to see overall workers.
 const Workers = () => {
-  const { workers } = useSelector((state) => state.workers);
+  const workers = useSelector((state) => state.workers.workers);
 
   return (
     <div>
@@ -18,7 +18,7 @@ const Workers = () => {
       >
         {workers.map((w, i) => (
           <Grid key={i} item>
-            <WorkerCard fName={w.fName} lName={w.lName} />
+            <WorkerCard worker={w} />
           </Grid>
         ))}
       </Grid>

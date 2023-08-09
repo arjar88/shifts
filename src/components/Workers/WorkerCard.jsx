@@ -5,11 +5,15 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { selectWorker } from "../../helpers/redux/slices/selectedWorker";
 
-const WorkerCard = ({ fName, lName }) => {
+const WorkerCard = ({ worker }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSeeWorker = () => {
+  const handleWorkerInfo = (worker) => {
+    dispatch(selectWorker(worker));
     navigate("/workerinfo");
   };
   return (
@@ -42,12 +46,12 @@ const WorkerCard = ({ fName, lName }) => {
                 }}
                 color="text.secondary"
               >
-                {fName + " " + lName}
+                {worker.fName + " " + worker.lName}
               </Typography>
             </Grid>
             <Grid item>
               <Button
-                onClick={() => handleSeeWorker()}
+                onClick={() => handleWorkerInfo(worker)}
                 sx={{ height: "1.6em", textTransform: "none" }}
                 size="large"
                 variant="contained"
