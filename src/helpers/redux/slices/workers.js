@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const workersSlice = createSlice({
   name: "workers",
   initialState: {
+    //root-level property because it's directly nested under the initialState object of your Redux slice.
     workers: [
       {
         id: 3232,
@@ -207,7 +208,12 @@ export const workersSlice = createSlice({
     addWorkers: (state, action) => {
       state.push(...action.payload);
     },
-    updateWorker: (state, action) => {},
+    updateWorker: (state, action) => {
+      const { workerId, propToUpdate, data } = action.payload;
+      const workerToUpdate = state.workers.find(
+        (worker) => worker.id === workerId
+      );
+    },
   },
 });
 export const { addWorkers, decrement } = workersSlice.actions;
