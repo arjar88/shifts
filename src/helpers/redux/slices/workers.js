@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const workersSlice = createSlice({
-  name: "medicine",
+  name: "workers",
   initialState: {
     workers: [
       {
