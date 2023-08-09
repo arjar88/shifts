@@ -31,7 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const DataTable = () => {
+const DataTable = ({ worker }) => {
   const headers = [
     "First Name",
     "Last Name",
@@ -43,15 +43,15 @@ const DataTable = () => {
     "Email",
     "101 Form",
   ];
-  const [rows, setRows] = useState([]);
-
-  console.log("re rendered");
+  const [rows, setRows] = useState([worker]);
 
   const [rowIndex, setRowIndex] = useState(-1);
   const [columnIndex, setColumnIndex] = useState(-1);
   const [temp, setTemp] = useState("");
 
   const handleTextFieldChange = (rowId, colName, value) => {
+    //rowId is the index of worker/row
+    //colName is the property we are mutating
     rows[rowId][colName] = value;
     setRows([...rows]);
   };

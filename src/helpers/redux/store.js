@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import workersReducer from "../redux/slices/workers";
-import selectedWorkerReducer from "./slices/selectedWorker";
+import selectedWorkerIdReducer from "./slices/selectedWorkerId";
 
 export default configureStore({
   reducer: {
     workers: workersReducer,
-    selectedWorker: selectedWorkerReducer,
+    selectedWorkerId: selectedWorkerIdReducer,
   },
 });

@@ -6,14 +6,14 @@ import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { selectWorker } from "../../helpers/redux/slices/selectedWorker";
+import { selectWorkerId } from "../../helpers/redux/slices/selectedWorkerId";
 
 const WorkerCard = ({ worker }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleWorkerInfo = (worker) => {
-    dispatch(selectWorker(worker));
+  const handleWorkerInfo = (id) => {
+    dispatch(selectWorkerId(id));
     navigate("/workerinfo");
   };
   return (
@@ -51,7 +51,7 @@ const WorkerCard = ({ worker }) => {
             </Grid>
             <Grid item>
               <Button
-                onClick={() => handleWorkerInfo(worker)}
+                onClick={() => handleWorkerInfo(worker.id)}
                 sx={{ height: "1.6em", textTransform: "none" }}
                 size="large"
                 variant="contained"

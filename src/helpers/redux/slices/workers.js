@@ -207,6 +207,7 @@ export const workersSlice = createSlice({
     addWorkers: (state, action) => {
       state.push(...action.payload);
     },
+    updateWorker: (state, action) => {},
   },
 });
 export const { addWorkers, decrement } = workersSlice.actions;

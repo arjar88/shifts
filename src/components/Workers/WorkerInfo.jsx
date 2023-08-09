@@ -3,11 +3,13 @@ import Grid from "@mui/system/Unstable_Grid/Grid";
 import { useSelector } from "react-redux";
 
 const WorkerInfo = () => {
-  const selectedWorker = useSelector(
-    (state) => state.selectedWorker.selectedWorker
+  const selectedWorkerId = useSelector(
+    (state) => state.selectedWorkerId.selectedWorkerId
   );
-  console.log(selectedWorker, "worker");
-
+  const { workers } = useSelector((state) => state.workers); // Make sure you have a workers slice in your store
+  const selectedWorker = workers.find(
+    (worker) => worker.id === selectedWorkerId
+  );
   return (
     <div>
       <Grid container>
