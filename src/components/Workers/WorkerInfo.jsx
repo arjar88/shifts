@@ -6,7 +6,7 @@ const WorkerInfo = () => {
   const selectedWorkerId = useSelector(
     (state) => state.selectedWorkerId.selectedWorkerId
   );
-  const { workers } = useSelector((state) => state.workers); // Make sure you have a workers slice in your store
+  const { workers } = useSelector((state) => state.workers);
   const selectedWorker = workers.find(
     (worker) => worker.id === selectedWorkerId
   );
