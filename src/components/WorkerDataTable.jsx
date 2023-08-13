@@ -35,28 +35,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const DataTable = ({ worker, headers }) => {
   const rows = Array.isArray(worker) ? worker : [worker];
-
-  //const [rows, setRows] = useState([]);
   const [rowIndex, setRowIndex] = useState(-1);
   const [columnIndex, setColumnIndex] = useState(-1);
   const [temp, setTemp] = useState("");
   const dispatch = useDispatch();
 
-  const handleTextFieldChange = (propName, value, workerId) => {
+  const handlePropertyChange = (propName, value, workerId) => {
     dispatch(updateWorker({ workerId, propName, value }));
   };
 
   const handleExit = (workerId, propName) => {
     setRowIndex(-1);
     setColumnIndex(-1);
-    handleTextFieldChange(propName, temp, workerId);
+    handlePropertyChange(propName, temp, workerId);
     setTemp("");
-  };
-
-  //need to change this
-  const handleCheckbox = (rowId, columnId, value) => {
-    rows[rowId][columnId] = value;
-    setRows([...rows]);
   };
 
   return (
@@ -176,7 +168,9 @@ const DataTable = ({ worker, headers }) => {
                 >
                   <Checkbox
                     checked={row.travel}
-                    onClick={() => handleCheckbox(index, "travel", !row.travel)}
+                    onClick={() =>
+                      handlePropertyChange("travel", !row.travel, worker.id)
+                    }
                     inputProps={{ "aria-label": "controlled" }}
                   />
                 </StyledTableCell>
@@ -257,7 +251,11 @@ const DataTable = ({ worker, headers }) => {
                   <Checkbox
                     checked={row.formFilled}
                     onClick={() =>
-                      handleCheckbox(index, "formFilled", !row.formFilled)
+                      handlePropertyChange(
+                        "formFilled",
+                        !row.formFilled,
+                        worker.id
+                      )
                     }
                     inputProps={{ "aria-label": "controlled" }}
                   />
