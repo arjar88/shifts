@@ -200,6 +200,17 @@ export const workersSlice = createSlice({
         formFilled: true,
         weekOne: { morning: true, night: false },
         weekTwo: { morning: false, night: true },
+        // shifts: [
+        //   {
+        //     name: "Morning",
+        //     availability: [true, false], // Availability for week 1 and week 2
+        //   },
+        //   {
+        //     name: "Night",
+        //     availability: [true, true], // Availability for week 1 and week 2
+        //   },
+        //   // Add more shifts as needed
+        // ],
         role: { title: "worker", roleId: 5 },
       },
     ],
