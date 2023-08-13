@@ -10,11 +10,24 @@ const WorkerInfo = () => {
   const selectedWorker = workers.find(
     (worker) => worker.id === selectedWorkerId
   );
+
+  const headers = [
+    "First Name",
+    "Last Name",
+    "Age",
+    "Salary",
+    "Travel",
+    "Location",
+    "Phone Number",
+    "Email",
+    "101 Form",
+  ];
+
   return (
     <div>
       <Grid container>
         <Grid item>
-          <DataTable worker={selectedWorker}></DataTable>
+          <DataTable worker={selectedWorker} headers={headers}></DataTable>
         </Grid>
       </Grid>
     </div>

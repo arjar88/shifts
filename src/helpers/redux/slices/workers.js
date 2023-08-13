@@ -209,19 +209,12 @@ export const workersSlice = createSlice({
       state.push(...action.payload);
     },
     updateWorker: (state, action) => {
-      const { workerId, propToUpdate, value } = action.payload;
-      const workerToUpdate = state.workers.find(
-        (worker) => worker.id === workerId
-      );
+      const { workerId, propName, value } = action.payload;
+      const index = state.workers.findIndex((worker) => worker.id === workerId);
 
-      //create new worker object with updated property
-      const updatedWorker = { ...workerToUpdate, [propToUpdate]: value };
-      const index = workers.findIndex((worker) => worker.id === workerId);
-
-      //create new worker array and insert new updated worker object into new array
-      const updatedWorkers = [...state.workers];
-      updatedWorkers[index] = updatedWorker;
-      state.workers = updatedWorkers;
+      const workerToUpdate = state.workers[index];
+      workerToUpdate[propName] = value;
+      state.workers[index] = workerToUpdate;
     },
   },
 });

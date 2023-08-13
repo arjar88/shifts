@@ -10,6 +10,8 @@ import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
+import { updateWorker } from "../helpers/redux/slices/workers";
+import { useDispatch } from "react-redux";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -31,38 +33,27 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const DataTable = ({ worker }) => {
-  const headers = [
-    "First Name",
-    "Last Name",
-    "Age",
-    "Salary",
-    "Travel",
-    "Location",
-    "Phone Number",
-    "Email",
-    "101 Form",
-  ];
-  const [rows, setRows] = useState([worker]);
+const DataTable = ({ worker, headers }) => {
+  const rows = Array.isArray(worker) ? worker : [worker];
 
+  //const [rows, setRows] = useState([]);
   const [rowIndex, setRowIndex] = useState(-1);
   const [columnIndex, setColumnIndex] = useState(-1);
   const [temp, setTemp] = useState("");
+  const dispatch = useDispatch();
 
-  const handleTextFieldChange = (rowId, colName, value) => {
-    //rowId is the index of worker/row
-    //colName is the property we are mutating
-    rows[rowId][colName] = value;
-    setRows([...rows]);
+  const handleTextFieldChange = (propName, value, workerId) => {
+    dispatch(updateWorker({ workerId, propName, value }));
   };
 
-  const handleExit = (rowId, columnName) => {
+  const handleExit = (workerId, propName) => {
     setRowIndex(-1);
     setColumnIndex(-1);
-    handleTextFieldChange(rowId, columnName, temp);
+    handleTextFieldChange(propName, temp, workerId);
     setTemp("");
   };
 
+  //need to change this
   const handleCheckbox = (rowId, columnId, value) => {
     rows[rowId][columnId] = value;
     setRows([...rows]);
@@ -75,7 +66,11 @@ const DataTable = ({ worker }) => {
           <TableHead>
             <TableRow>
               {headers.map((h, index) => (
-                <StyledTableCell key={index} align="left">
+                <StyledTableCell
+                  sx={{ margin: "2em" }}
+                  key={index}
+                  align="left"
+                >
                   {h}
                 </StyledTableCell>
               ))}
@@ -98,7 +93,7 @@ const DataTable = ({ worker }) => {
                       onChange={(event) => setTemp(event.target.value)}
                       onKeyUp={(e) => {
                         if (e.key === "Enter") {
-                          handleExit(index, "fName");
+                          handleExit(worker.id, "fName");
                         }
                       }}
                     />
@@ -120,7 +115,7 @@ const DataTable = ({ worker }) => {
                       onChange={(event) => setTemp(event.target.value)}
                       onKeyUp={(e) => {
                         if (e.key === "Enter") {
-                          handleExit(index, "lName");
+                          handleExit(worker.id, "lName");
                         }
                       }}
                     />
@@ -142,7 +137,7 @@ const DataTable = ({ worker }) => {
                       onChange={(event) => setTemp(event.target.value)}
                       onKeyUp={(e) => {
                         if (e.key === "Enter") {
-                          handleExit(index, "age");
+                          handleExit(worker.id, "age");
                         }
                       }}
                     />
@@ -164,7 +159,7 @@ const DataTable = ({ worker }) => {
                       onChange={(event) => setTemp(event.target.value)}
                       onKeyUp={(e) => {
                         if (e.key === "Enter") {
-                          handleExit(index, "salary");
+                          handleExit(worker.id, "salary");
                         }
                       }}
                     />
@@ -199,7 +194,7 @@ const DataTable = ({ worker }) => {
                       onChange={(event) => setTemp(event.target.value)}
                       onKeyUp={(e) => {
                         if (e.key === "Enter") {
-                          handleExit(index, "location");
+                          handleExit(worker.id, "location");
                         }
                       }}
                     />
@@ -222,7 +217,7 @@ const DataTable = ({ worker }) => {
                       onChange={(event) => setTemp(event.target.value)}
                       onKeyUp={(e) => {
                         if (e.key === "Enter") {
-                          handleExit(index, "pNumber");
+                          handleExit(worker.id, "pNumber");
                         }
                       }}
                     />
@@ -244,7 +239,7 @@ const DataTable = ({ worker }) => {
                       onChange={(event) => setTemp(event.target.value)}
                       onKeyUp={(e) => {
                         if (e.key === "Enter") {
-                          handleExit(index, "email");
+                          handleExit(worker.id, "email");
                         }
                       }}
                     />
