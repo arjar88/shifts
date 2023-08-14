@@ -5,15 +5,25 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Collapse from "@mui/material/Collapse";
 import { FaUser, FaWarehouse } from "react-icons/fa";
+import { VscTools } from "react-icons/vsc";
 import { AiFillSchedule } from "react-icons/ai";
+import { FiEdit2 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import SubMenu from "./SubMenu";
 
 const Menu = () => {
   const drawerWidth = 240;
   const navigate = useNavigate();
   const navigateOnClick = (path) => {
     navigate(path);
+  };
+
+  const [expand, setExpand] = useState(false);
+  const handleExpand = () => {
+    setExpand(!expand);
   };
 
   return (
@@ -46,11 +56,26 @@ const Menu = () => {
       <List>
         {[
           {
-            text: "Create Schedule",
-            path: "/",
+            text: "Schedule",
             icon: (
               <AiFillSchedule style={{ color: "purple", fontSize: "1.3em" }} />
             ),
+            subItems: [
+              {
+                text: "Create Schedule",
+                path: "/",
+                icon: (
+                  <VscTools style={{ color: "purple", fontSize: "1.35em" }} />
+                ),
+              },
+              {
+                text: "Edit Shift Structure",
+                path: "/",
+                icon: (
+                  <FiEdit2 style={{ color: "purple", fontSize: "1.3em" }} />
+                ),
+              },
+            ],
           },
           {
             text: "Workers",
@@ -62,28 +87,37 @@ const Menu = () => {
             icon: <FaWarehouse style={{ color: "cyan", fontSize: "1em" }} />,
           },
         ].map((obj) => (
-          <ListItem
-            onClick={() => navigateOnClick(obj.path)}
-            key={obj.text}
-            disablePadding
-            sx={{ paddingTop: "3em" }}
-          >
-            <ListItemButton>
-              <ListItemIcon style={{ marginRight: "-1em" }}>
-                {obj.icon}
-              </ListItemIcon>
-              <ListItemText
-                primary={obj.text}
-                sx={{
-                  color: "darkcyan",
-                  fontFamily: "monospace",
-                  fontWeight: "bold",
-                  fontSize: "1.4em",
-                }}
-                disableTypography
-              />
-            </ListItemButton>
-          </ListItem>
+          <>
+            <ListItem
+              onClick={
+                obj.subItems ? handleExpand : () => navigateOnClick(obj.path)
+              }
+              key={obj.text}
+              disablePadding
+              sx={{ paddingTop: "3em" }}
+            >
+              <ListItemButton>
+                <ListItemIcon style={{ marginRight: "-1em" }}>
+                  {obj.icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={obj.text}
+                  sx={{
+                    color: "darkcyan",
+                    fontFamily: "monospace",
+                    fontWeight: "bold",
+                    fontSize: "1.4em",
+                  }}
+                  disableTypography
+                />
+              </ListItemButton>
+            </ListItem>
+            {obj.subItems && (
+              <Collapse in={expand} timeout="auto" unmountOnExit>
+                <SubMenu subItems={obj.subItems} />
+              </Collapse>
+            )}
+          </>
         ))}
       </List>
     </Drawer>
