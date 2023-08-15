@@ -1,5 +1,6 @@
-import DataTable from "../WorkerDataTable";
-
-const EditShiftStructure = () => {};
+import ShiftDataTable from "./ShiftDataTable";
+const EditShiftStructure = () => {
+  return <ShiftDataTable></ShiftDataTable>;
+};
 
 export default EditShiftStructure;

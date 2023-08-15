@@ -10,6 +10,7 @@ import { FaUser, FaWarehouse } from "react-icons/fa";
 import { VscTools } from "react-icons/vsc";
 import { AiFillSchedule } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
+import { RiPagesLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SubMenu from "./SubMenu";
@@ -61,6 +62,16 @@ const Menu = () => {
               <AiFillSchedule style={{ color: "purple", fontSize: "1.3em" }} />
             ),
             subItems: [
+              {
+                text: "View Schedule",
+                path: "/createSchedule",
+                icon: (
+                  <RiPagesLine
+                    style={{ color: "#BA55D3", fontSize: "1.35em" }}
+                  />
+                ),
+              },
+              ,
               {
                 text: "Create Schedule",
                 path: "/createSchedule",
