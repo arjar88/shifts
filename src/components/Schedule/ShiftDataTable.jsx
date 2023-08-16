@@ -78,7 +78,7 @@ const ShiftDataTable = () => {
       marginTop: "1em",
     },
     selectStyle: {
-      width: "12.5em",
+      width: "11em",
       height: "3em",
     },
   };
