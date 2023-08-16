@@ -14,9 +14,13 @@ export const shiftStructureSlice = createSlice({
     ],
   },
   reducers: {
-    updateShiftStructure: (state, action) => {},
+    updateShiftStructure: (state, action) => {
+      debugger;
+      const { index, propName, value } = action.payload;
+      state.shiftStructure[index][propName] = value;
+    },
   },
 });
-export const { selectWorkerId } = shiftStructureSlice.actions;
+export const { updateShiftStructure } = shiftStructureSlice.actions;
 
 export default shiftStructureSlice.reducer;

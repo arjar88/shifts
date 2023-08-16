@@ -9,8 +9,13 @@ import Button from "@mui/material/Button";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useSelector, useDispatch } from "react-redux";
+import { updateShiftStructure } from "../../helpers/redux/slices/shiftStructure";
+import { style } from "@mui/system";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,6 +45,7 @@ const ShiftDataTable = () => {
   const [columnIndex, setColumnIndex] = useState(-1);
   const [temp, setTemp] = useState("");
   const dispatch = useDispatch();
+  const numOfShifts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const headers = [
     "Sunday",
@@ -51,14 +57,14 @@ const ShiftDataTable = () => {
     "Saturday",
   ];
 
-  const handlePropertyChange = (propName, value, workerId) => {
-    //dispatch(updateWorker({ workerId, propName, value }));
+  const handlePropertyChange = (index, propName, value) => {
+    dispatch(updateShiftStructure({ index, propName, value }));
   };
 
-  const handleExit = (workerId, propName) => {
+  const handleExit = (index, propName) => {
     setRowIndex(-1);
     setColumnIndex(-1);
-    handlePropertyChange(propName, temp, workerId);
+    handlePropertyChange(index, propName, temp);
     setTemp("");
   };
 
@@ -71,54 +77,78 @@ const ShiftDataTable = () => {
       backgroundColor: "#42adf5",
       marginTop: "1em",
     },
+    selectStyle: {
+      width: "12.5em",
+      height: "3em",
+    },
+  };
+
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: "3em",
+      },
+    },
   };
 
   return (
-    <ClickAwayListener onClickAway={() => handleExit()}>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              {headers.map((h, index) => (
-                <StyledTableCell
-                  sx={{ margin: "2em" }}
-                  key={index}
-                  align="left"
+    // <ClickAwayListener onClickAway={() => handleExit()}>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            {headers.map((h, index) => (
+              <StyledTableCell sx={{ margin: "2em" }} key={index} align="left">
+                {h}
+              </StyledTableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <StyledTableRow>
+            {rows.map((day, index) => (
+              <StyledTableCell key={index}>
+                <Select
+                  sx={styles.selectStyle}
+                  placeholder={"Number Of Shifts"}
+                  MenuProps={MenuProps}
+                  input={<OutlinedInput label="Name" />}
+                  onChange={(event) => setTemp(event.target.value)}
+                  onKeyUp={(e) => {
+                    if (e.key === "Enter") {
+                      handleExit(index, "numOfShifts");
+                    }
+                  }}
                 >
-                  {h}
-                </StyledTableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <StyledTableRow>
-              {rows.map((day, index) => (
-                <StyledTableCell key={index}>
-                  <TextField
-                    placeholder={"Number Of Shifts"}
-                    onChange={(event) => setTemp(event.target.value)}
-                    onKeyUp={(e) => {
-                      if (e.key === "Enter") {
-                        handleExit();
-                      }
-                    }}
-                  />
-                  {rows[index]["numOfShifts"] && (
-                    <Button
-                      size="large"
-                      variant="contained"
-                      sx={styles.buttonStyles}
+                  {numOfShifts.map((num) => (
+                    <MenuItem
+                      key={num}
+                      value={num}
+                      //style={getStyles(name, personName, theme)}
                     >
-                      Number Of Workers
-                    </Button>
-                  )}
-                </StyledTableCell>
-              ))}
-            </StyledTableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </ClickAwayListener>
+                      {num}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {rows[index]["numOfShifts"] && (
+                  <Button
+                    size="large"
+                    variant="contained"
+                    sx={styles.buttonStyles}
+                  >
+                    Number Of Workers
+                  </Button>
+                )}
+              </StyledTableCell>
+            ))}
+          </StyledTableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+    //</ClickAwayListener>
   );
 };
 
