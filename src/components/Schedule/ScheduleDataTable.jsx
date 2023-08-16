@@ -124,6 +124,12 @@ const headCells = [
     disablePadding: false,
     label: "Role",
   },
+  {
+    id: "Shifts",
+    numeric: true,
+    disablePadding: false,
+    label: "Shifts",
+  },
 ];
 
 function EnhancedTableHead({

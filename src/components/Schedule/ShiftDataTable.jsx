@@ -5,13 +5,12 @@ import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
+import Button from "@mui/material/Button";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
-import Checkbox from "@mui/material/Checkbox";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
-import { updateWorker } from "../../helpers/redux/slices/workers";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,7 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const ShiftDataTable = () => {
-  const rows = [];
+  const rows = useSelector((state) => state.shiftStructure.shiftStructure);
   const [rowIndex, setRowIndex] = useState(-1);
   const [columnIndex, setColumnIndex] = useState(-1);
   const [temp, setTemp] = useState("");
@@ -53,7 +52,7 @@ const ShiftDataTable = () => {
   ];
 
   const handlePropertyChange = (propName, value, workerId) => {
-    dispatch(updateWorker({ workerId, propName, value }));
+    //dispatch(updateWorker({ workerId, propName, value }));
   };
 
   const handleExit = (workerId, propName) => {
@@ -61,6 +60,17 @@ const ShiftDataTable = () => {
     setColumnIndex(-1);
     handlePropertyChange(propName, temp, workerId);
     setTemp("");
+  };
+
+  const styles = {
+    buttonStyles: {
+      height: "1.6em",
+      width: "12.5em",
+      textTransform: "none",
+      color: "white",
+      backgroundColor: "#42adf5",
+      marginTop: "1em",
+    },
   };
 
   return (
@@ -82,14 +92,26 @@ const ShiftDataTable = () => {
           </TableHead>
           <TableBody>
             <StyledTableRow>
-              {headers.map((day, index) => (
+              {rows.map((day, index) => (
                 <StyledTableCell key={index}>
                   <TextField
                     placeholder={"Number Of Shifts"}
-                    // You can set the value and onChange handlers here
-                    // value={rows[rowIndex][day]} for example
-                    // onChange={(event) => handleInputChange(event, day)}
+                    onChange={(event) => setTemp(event.target.value)}
+                    onKeyUp={(e) => {
+                      if (e.key === "Enter") {
+                        handleExit();
+                      }
+                    }}
                   />
+                  {rows[index]["numOfShifts"] && (
+                    <Button
+                      size="large"
+                      variant="contained"
+                      sx={styles.buttonStyles}
+                    >
+                      Number Of Workers
+                    </Button>
+                  )}
                 </StyledTableCell>
               ))}
             </StyledTableRow>
