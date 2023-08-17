@@ -8,14 +8,12 @@ import TableHead from "@mui/material/TableHead";
 import Button from "@mui/material/Button";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import TextField from "@mui/material/TextField";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useSelector, useDispatch } from "react-redux";
 import { updateShiftStructure } from "../../helpers/redux/slices/shiftStructure";
-import { style } from "@mui/system";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,10 +38,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const ShiftDataTable = () => {
+  //const [rowIndex, setRowIndex] = useState(-1);
+  //const [columnIndex, setColumnIndex] = useState(-1);
   const rows = useSelector((state) => state.shiftStructure.shiftStructure);
-  const [rowIndex, setRowIndex] = useState(-1);
-  const [columnIndex, setColumnIndex] = useState(-1);
-  const [temp, setTemp] = useState("");
   const dispatch = useDispatch();
   const numOfShifts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -61,11 +58,10 @@ const ShiftDataTable = () => {
     dispatch(updateShiftStructure({ index, propName, value }));
   };
 
-  const handleExit = (index, propName) => {
-    setRowIndex(-1);
-    setColumnIndex(-1);
-    handlePropertyChange(index, propName, temp);
-    setTemp("");
+  const handleExit = (index, propName, value) => {
+    //setRowIndex(-1);
+    //setColumnIndex(-1);
+    handlePropertyChange(index, propName, value);
   };
 
   const styles = {
@@ -114,21 +110,15 @@ const ShiftDataTable = () => {
                 <Select
                   sx={styles.selectStyle}
                   placeholder={"Number Of Shifts"}
+                  defaultValue={day.numOfShifts}
                   MenuProps={MenuProps}
                   input={<OutlinedInput label="Name" />}
-                  onChange={(event) => setTemp(event.target.value)}
-                  onKeyUp={(e) => {
-                    if (e.key === "Enter") {
-                      handleExit(index, "numOfShifts");
-                    }
-                  }}
+                  onChange={(event) =>
+                    handleExit(index, "numOfShifts", event.target.value)
+                  }
                 >
                   {numOfShifts.map((num) => (
-                    <MenuItem
-                      key={num}
-                      value={num}
-                      //style={getStyles(name, personName, theme)}
-                    >
+                    <MenuItem key={num} value={num}>
                       {num}
                     </MenuItem>
                   ))}
