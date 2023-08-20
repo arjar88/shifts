@@ -125,28 +125,21 @@ const headCells = [
     label: "Role",
   },
   {
-    id: "Week One",
+    id: "Shifts",
     numeric: true,
     disablePadding: false,
-    label: "Week One",
-  },
-  {
-    id: "Week Two",
-    numeric: true,
-    disablePadding: false,
-    label: "Week Two",
+    label: "Shifts",
   },
 ];
 
-function EnhancedTableHead(props) {
-  const {
-    onSelectAllClick,
-    order,
-    orderBy,
-    numSelected,
-    rowCount,
-    onRequestSort,
-  } = props;
+function EnhancedTableHead({
+  onSelectAllClick,
+  order,
+  orderBy,
+  numSelected,
+  rowCount,
+  onRequestSort,
+}) {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -403,7 +396,7 @@ export default function ScheduleDataTable({ workers }) {
                         }}
                       ></Chip>
                     </TableCell>
-                    <TableCell align="right">
+                    {/* <TableCell align="right">
                       <Grid container direction="column">
                         <Grid item>
                           <span>Morning </span>
@@ -426,7 +419,7 @@ export default function ScheduleDataTable({ workers }) {
                           <Checkbox checked={row.weekTwo.night} />
                         </Grid>
                       </Grid>
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 );
               })}

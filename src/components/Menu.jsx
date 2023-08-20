@@ -10,6 +10,7 @@ import { FaUser, FaWarehouse } from "react-icons/fa";
 import { VscTools } from "react-icons/vsc";
 import { AiFillSchedule } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
+import { RiPagesLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SubMenu from "./SubMenu";
@@ -62,17 +63,27 @@ const Menu = () => {
             ),
             subItems: [
               {
-                text: "Create Schedule",
-                path: "/",
+                text: "View Schedule",
+                path: "/createSchedule",
                 icon: (
-                  <VscTools style={{ color: "purple", fontSize: "1.35em" }} />
+                  <RiPagesLine
+                    style={{ color: "#BA55D3", fontSize: "1.35em" }}
+                  />
+                ),
+              },
+              ,
+              {
+                text: "Create Schedule",
+                path: "/createSchedule",
+                icon: (
+                  <VscTools style={{ color: "#BA55D3", fontSize: "1.35em" }} />
                 ),
               },
               {
                 text: "Edit Shift Structure",
-                path: "/",
+                path: "/editShifts",
                 icon: (
-                  <FiEdit2 style={{ color: "purple", fontSize: "1.3em" }} />
+                  <FiEdit2 style={{ color: "#BA55D3", fontSize: "1.3em" }} />
                 ),
               },
             ],
