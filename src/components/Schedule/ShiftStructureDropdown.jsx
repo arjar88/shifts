@@ -10,7 +10,7 @@ const ShiftStructureDropdown = () => {
 
   const styles = {
     textFieldStyle: {
-      width: "12em",
+      width: "14em",
     },
   };
   return (
