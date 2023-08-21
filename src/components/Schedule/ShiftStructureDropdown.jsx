@@ -1,9 +1,13 @@
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ShiftStructureDropdown = () => {
   const [age, setAge] = useState("");
+  const { shiftStructures } = useSelector((state) => state.shiftStructures);
+  console.log(shiftStructures, "dwsd");
+
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -23,10 +27,11 @@ const ShiftStructureDropdown = () => {
         select
         label="Shift Structures"
       >
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {shiftStructures.map((structure) => (
+          <MenuItem key={structure.id} value={structure}>
+            {structure.name}
+          </MenuItem>
+        ))}
       </TextField>
     </>
   );

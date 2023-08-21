@@ -13,7 +13,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useSelector, useDispatch } from "react-redux";
-import { updateShiftStructure } from "../../helpers/redux/slices/shiftStructure";
+import { updateShiftStructure } from "../../helpers/redux/slices/shiftStructures";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,7 +40,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const ShiftDataTable = () => {
   //const [rowIndex, setRowIndex] = useState(-1);
   //const [columnIndex, setColumnIndex] = useState(-1);
-  const rows = useSelector((state) => state.shiftStructure.shiftStructure);
+  const rows = useSelector((state) => state.shiftStructures.shiftStructures);
   const dispatch = useDispatch();
   const numOfShifts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 

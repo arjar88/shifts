@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import workersReducer from "../redux/slices/workers";
 import selectedWorkerIdReducer from "./slices/selectedWorkerId";
-import shiftStructureReducer from "./slices/shiftStructure";
+import shiftStructuresReducer from "./slices/shiftStructures";
 import persistConfig from "./persistConfig"; // Import your persistConfig
 import { persistReducer } from "redux-persist";
 
@@ -10,9 +10,9 @@ const persistedWorkersReducer = persistReducer(
   workersReducer
 );
 
-const persistedShiftStructureReducer = persistReducer(
-  { ...persistConfig, key: "shiftStructure" },
-  shiftStructureReducer
+const persistedShiftStructuresReducer = persistReducer(
+  { ...persistConfig, key: "shiftStructures" },
+  shiftStructuresReducer
 );
 
 const persistedSelectedWorkerIdReducer = persistReducer(
@@ -24,6 +24,6 @@ export default configureStore({
   reducer: {
     workers: persistedWorkersReducer,
     selectedWorkerId: persistedSelectedWorkerIdReducer,
-    shiftStructure: persistedShiftStructureReducer,
+    shiftStructures: persistedShiftStructuresReducer,
   },
 });
