@@ -5,7 +5,7 @@ import Menu from "./components/Menu";
 import Workers from "./components/Workers/Workers";
 import WorkerInfo from "./components/Workers/WorkerInfo";
 import Schedule from "./components/Schedule/Schedule";
-import EditShiftStructure from "./components/Schedule/EditShiftStructure";
+import ShiftStructures from "./components/Schedule/ShiftStructures";
 import Grid from "@mui/material/Grid";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/createSchedule" element={<Schedule />}></Route>
-            <Route path="/editShifts" element={<EditShiftStructure />}></Route>
+            <Route path="/shifts" element={<ShiftStructures />}></Route>
             <Route path="/workers" element={<Workers />}></Route>
             <Route path="/workerinfo" element={<WorkerInfo />}></Route>
           </Routes>

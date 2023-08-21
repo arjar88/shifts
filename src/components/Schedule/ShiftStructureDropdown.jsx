@@ -1,4 +1,3 @@
-import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
@@ -22,10 +21,11 @@ const ShiftStructureDropdown = () => {
         value={age}
         onChange={handleChange}
         select
-        label="Shift Structuresdddddddddddddddddddd"
+        label="Shift Structures"
       >
         <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>vdvdvdvdvdv</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+        <MenuItem value={30}>Thirty</MenuItem>
         <MenuItem value={30}>Thirty</MenuItem>
       </TextField>
     </>

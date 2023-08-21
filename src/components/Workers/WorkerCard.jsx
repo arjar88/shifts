@@ -16,17 +16,24 @@ const WorkerCard = ({ worker }) => {
     dispatch(selectWorkerId(id));
     navigate("/workerinfo");
   };
+
+  const styles = {
+    cardStyles: {
+      width: "12em",
+      height: "17em",
+      boxShadow: "3em",
+      marginTop: "1em",
+    },
+    buttonStyle: { height: "1.6em", textTransform: "none" },
+    nameStyle: {
+      fontSize: "1.2em",
+      marginTop: "0.5em",
+    },
+  };
+
   return (
     <div>
-      <Card
-        sx={{
-          width: "12em",
-          height: "17em",
-          boxShadow: "3em",
-          marginTop: "1em",
-        }}
-        elevation={6}
-      >
+      <Card sx={styles.cardStyles} elevation={6}>
         <CardContent>
           <Grid
             spacing={8}
@@ -39,20 +46,14 @@ const WorkerCard = ({ worker }) => {
               <Avatar alt="Remy Sharp" sx={{ width: 56, height: 56 }} />
             </Grid>
             <Grid item style={{ marginTop: -20 }}>
-              <Typography
-                sx={{
-                  fontSize: "1.2em",
-                  marginTop: "0.5em",
-                }}
-                color="text.secondary"
-              >
+              <Typography sx={styles.nameStyle} color="text.secondary">
                 {worker.fName + " " + worker.lName}
               </Typography>
             </Grid>
             <Grid item>
               <Button
                 onClick={() => handleWorkerInfo(worker.id)}
-                sx={{ height: "1.6em", textTransform: "none" }}
+                sx={styles.buttonStyle}
                 size="large"
                 variant="contained"
               >

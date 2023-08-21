@@ -1,3 +1,3 @@
-const workersPerShiftModal = () => {};
+const WorkersPerShiftModal = () => {};
 
-export default workersPerShiftModal;
+export default WorkersPerShiftModal;
