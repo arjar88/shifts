@@ -37,9 +37,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const ShiftDataTable = () => {
+const ShiftDataTable = ({ selectedStructure }) => {
+  const structure = selectedStructure?.structure;
   //const [rowIndex, setRowIndex] = useState(-1);
   //const [columnIndex, setColumnIndex] = useState(-1);
+  console.log(selectedStructure, "selectedStructure");
   const rows = useSelector((state) => state.shiftStructures.shiftStructures);
   const dispatch = useDispatch();
   const numOfShifts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -54,14 +56,14 @@ const ShiftDataTable = () => {
     "Saturday",
   ];
 
-  const handlePropertyChange = (index, propName, value) => {
-    dispatch(updateShiftStructure({ index, propName, value }));
+  const handlePropertyChange = (id, propName, value) => {
+    dispatch(updateShiftStructure({ id, propName, value }));
   };
 
-  const handleExit = (index, propName, value) => {
+  const handleExit = (id, propName, value) => {
     //setRowIndex(-1);
     //setColumnIndex(-1);
-    handlePropertyChange(index, propName, value);
+    handlePropertyChange(id, propName, value);
   };
 
   const styles = {
@@ -105,35 +107,40 @@ const ShiftDataTable = () => {
         </TableHead>
         <TableBody>
           <StyledTableRow>
-            {rows.map((day, index) => (
-              <StyledTableCell key={index}>
-                <Select
-                  sx={styles.selectStyle}
-                  placeholder={"Number Of Shifts"}
-                  defaultValue={day.numOfShifts}
-                  MenuProps={MenuProps}
-                  input={<OutlinedInput label="Name" />}
-                  onChange={(event) =>
-                    handleExit(index, "numOfShifts", event.target.value)
-                  }
-                >
-                  {numOfShifts.map((num) => (
-                    <MenuItem key={num} value={num}>
-                      {num}
-                    </MenuItem>
-                  ))}
-                </Select>
-                {rows[index]["numOfShifts"] && (
-                  <Button
-                    size="large"
-                    variant="contained"
-                    sx={styles.buttonStyles}
+            {structure &&
+              structure.map((struc) => (
+                <StyledTableCell key={struc.id}>
+                  <Select
+                    sx={styles.selectStyle}
+                    placeholder={"Number Of Shifts"}
+                    defaultValue={struc.numOfShifts}
+                    MenuProps={MenuProps}
+                    input={<OutlinedInput label="Name" />}
+                    onChange={(event) =>
+                      handleExit(
+                        selectedStructure.id,
+                        "numOfShifts",
+                        event.target.value
+                      )
+                    }
                   >
-                    Number Of Workers
-                  </Button>
-                )}
-              </StyledTableCell>
-            ))}
+                    {numOfShifts.map((num) => (
+                      <MenuItem key={num} value={num}>
+                        {num}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  {struc["numOfShifts"] && (
+                    <Button
+                      size="large"
+                      variant="contained"
+                      sx={styles.buttonStyles}
+                    >
+                      Number Of Workers
+                    </Button>
+                  )}
+                </StyledTableCell>
+              ))}
           </StyledTableRow>
         </TableBody>
       </Table>

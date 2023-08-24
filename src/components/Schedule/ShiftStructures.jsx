@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
 import ShiftDataTable from "./ShiftDataTable";
 import ShiftStructureDropdown from "./ShiftStructureDropdown";
 import Grid from "@mui/material/Grid";
 const ShiftStructures = () => {
+  const selectedStructure = useSelector(
+    (state) => state.shiftStructures.selectedStructure
+  );
   return (
     <Grid
       spacing={4}
@@ -14,7 +18,7 @@ const ShiftStructures = () => {
         <ShiftStructureDropdown />
       </Grid>
       <Grid item>
-        <ShiftDataTable />
+        <ShiftDataTable selectedStructure={selectedStructure} />
       </Grid>
     </Grid>
   );

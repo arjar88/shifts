@@ -1,15 +1,18 @@
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateSelectedStructure } from "../../helpers/redux/slices/shiftStructures";
 
 const ShiftStructureDropdown = () => {
-  const [age, setAge] = useState("");
+  const [structure, setStructure] = useState("");
   const { shiftStructures } = useSelector((state) => state.shiftStructures);
+  const dispatch = useDispatch();
   console.log(shiftStructures, "dwsd");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    dispatch(updateSelectedStructure(event.target.value.id));
+    setStructure(event.target.value);
   };
 
   const styles = {
@@ -18,22 +21,20 @@ const ShiftStructureDropdown = () => {
     },
   };
   return (
-    <>
-      <TextField
-        sx={styles.textFieldStyle}
-        variant="outlined"
-        value={age}
-        onChange={handleChange}
-        select
-        label="Shift Structures"
-      >
-        {shiftStructures.map((structure) => (
-          <MenuItem key={structure.id} value={structure}>
-            {structure.name}
-          </MenuItem>
-        ))}
-      </TextField>
-    </>
+    <TextField
+      sx={styles.textFieldStyle}
+      variant="outlined"
+      value={structure}
+      onChange={handleChange}
+      select
+      label="Shift Structures"
+    >
+      {shiftStructures.map((structure) => (
+        <MenuItem key={structure.id} value={structure}>
+          {structure.name}
+        </MenuItem>
+      ))}
+    </TextField>
   );
 };
 
