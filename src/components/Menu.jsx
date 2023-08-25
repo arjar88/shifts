@@ -80,8 +80,8 @@ const Menu = () => {
                 ),
               },
               {
-                text: "Edit Shift Structure",
-                path: "/editShifts",
+                text: "Shift Structure",
+                path: "/shifts",
                 icon: (
                   <FiEdit2 style={{ color: "#BA55D3", fontSize: "1.3em" }} />
                 ),
