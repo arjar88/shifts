@@ -1,14 +1,12 @@
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateSelectedStructureId } from "../../helpers/redux/slices/shiftStructures";
 
-const ShiftStructureDropdown = () => {
+const ShiftStructureDropdown = ({ shiftStructures }) => {
   const [structure, setStructure] = useState("");
-  const { shiftStructures } = useSelector((state) => state.shiftStructures);
   const dispatch = useDispatch();
-  console.log(shiftStructures, "dwsd");
 
   const handleChange = (event) => {
     setStructure(event.target.value);
