@@ -3,9 +3,7 @@ import ShiftDataTable from "./ShiftDataTable";
 import ShiftStructureDropdown from "./ShiftStructureDropdown";
 import Grid from "@mui/material/Grid";
 const ShiftStructures = () => {
-  const selectedStructure = useSelector(
-    (state) => state.shiftStructures.selectedStructure
-  );
+  const { shiftStructures } = useSelector((state) => state.shiftStructures);
   return (
     <Grid
       spacing={4}
@@ -18,7 +16,7 @@ const ShiftStructures = () => {
         <ShiftStructureDropdown />
       </Grid>
       <Grid item>
-        <ShiftDataTable selectedStructure={selectedStructure} />
+        <ShiftDataTable shiftStructures={shiftStructures} />
       </Grid>
     </Grid>
   );

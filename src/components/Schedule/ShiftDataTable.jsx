@@ -37,12 +37,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const ShiftDataTable = ({ selectedStructure }) => {
-  const structure = selectedStructure?.structure;
+const ShiftDataTable = ({ shiftStructures }) => {
   //const [rowIndex, setRowIndex] = useState(-1);
   //const [columnIndex, setColumnIndex] = useState(-1);
-  console.log(selectedStructure, "selectedStructure");
-  const rows = useSelector((state) => state.shiftStructures.shiftStructures);
+  //const rows = useSelector((state) => state.shiftStructures.shiftStructures);
+  const { selectedStructureId } = useSelector((state) => state.shiftStructures);
+  const selectedStructure = shiftStructures.find(
+    (s) => s.id === selectedStructureId
+  );
+  const structure = selectedStructure ? selectedStructure.structure : [];
+  console.log(structure, "structure");
+
   const dispatch = useDispatch();
   const numOfShifts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -56,14 +61,14 @@ const ShiftDataTable = ({ selectedStructure }) => {
     "Saturday",
   ];
 
-  const handlePropertyChange = (id, propName, value) => {
-    dispatch(updateShiftStructure({ id, propName, value }));
+  const handlePropertyChange = (id, day, propName, value) => {
+    dispatch(updateShiftStructure({ id, day, propName, value }));
   };
 
-  const handleExit = (id, propName, value) => {
+  const handleExit = (id, day, propName, value) => {
     //setRowIndex(-1);
     //setColumnIndex(-1);
-    handlePropertyChange(id, propName, value);
+    handlePropertyChange(id, day, propName, value);
   };
 
   const styles = {
@@ -118,7 +123,8 @@ const ShiftDataTable = ({ selectedStructure }) => {
                     input={<OutlinedInput label="Name" />}
                     onChange={(event) =>
                       handleExit(
-                        selectedStructure.id,
+                        selectedStructureId,
+                        struc.day,
                         "numOfShifts",
                         event.target.value
                       )
