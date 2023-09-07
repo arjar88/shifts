@@ -37,11 +37,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const ShiftDataTable = ({ shiftStructures }) => {
+const ShiftDataTable = ({ shiftStructures, selectedStructureId }) => {
   //const [rowIndex, setRowIndex] = useState(-1);
   //const [columnIndex, setColumnIndex] = useState(-1);
   //const rows = useSelector((state) => state.shiftStructures.shiftStructures);
-  const { selectedStructureId } = useSelector((state) => state.shiftStructures);
+
   const selectedStructure = shiftStructures.find(
     (s) => s.id === selectedStructureId
   );
