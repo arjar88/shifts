@@ -118,7 +118,7 @@ const ShiftDataTable = ({ shiftStructures, selectedStructureId }) => {
                   <Select
                     sx={styles.selectStyle}
                     placeholder={"Number Of Shifts"}
-                    defaultValue={struc.numOfShifts}
+                    value={struc.numOfShifts}
                     MenuProps={MenuProps}
                     input={<OutlinedInput label="Name" />}
                     onChange={(event) =>
