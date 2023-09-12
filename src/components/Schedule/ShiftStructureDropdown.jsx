@@ -5,11 +5,11 @@ import { useDispatch } from "react-redux";
 import { updateSelectedStructureId } from "../../helpers/redux/slices/shiftStructures";
 
 const ShiftStructureDropdown = ({ shiftStructures }) => {
-  const [structure, setStructure] = useState("");
-  const dispatch = useDispatch();
+  const [selectedStructure, setSelectedStructure] = useState(null);
 
   const handleChange = (event) => {
-    setStructure(event.target.value);
+    const selectedValue = event.target.value;
+    setSelectedStructure(selectedValue);
     dispatch(updateSelectedStructureId(event.target.value.id));
   };
 
@@ -22,7 +22,7 @@ const ShiftStructureDropdown = ({ shiftStructures }) => {
     <TextField
       sx={styles.textFieldStyle}
       variant="outlined"
-      value={structure}
+      value={selectedStructure || ""}
       onChange={handleChange}
       select
       label="Shift Structures"
