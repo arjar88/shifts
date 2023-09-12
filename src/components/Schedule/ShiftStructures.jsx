@@ -15,7 +15,7 @@ const ShiftStructures = () => {
       container
     >
       <Grid item>
-        <ShiftStructureDropdown shiftStructures={shiftStructures} />
+        <ShiftStructureDropdown />
       </Grid>
       <Grid item>
         <ShiftDataTable
