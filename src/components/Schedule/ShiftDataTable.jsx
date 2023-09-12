@@ -37,11 +37,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const ShiftDataTable = ({ shiftStructures }) => {
+const ShiftDataTable = ({ shiftStructures, selectedStructureId }) => {
   //const [rowIndex, setRowIndex] = useState(-1);
   //const [columnIndex, setColumnIndex] = useState(-1);
   //const rows = useSelector((state) => state.shiftStructures.shiftStructures);
-  const { selectedStructureId } = useSelector((state) => state.shiftStructures);
+
   const selectedStructure = shiftStructures.find(
     (s) => s.id === selectedStructureId
   );
@@ -118,7 +118,7 @@ const ShiftDataTable = ({ shiftStructures }) => {
                   <Select
                     sx={styles.selectStyle}
                     placeholder={"Number Of Shifts"}
-                    defaultValue={struc.numOfShifts}
+                    value={struc.numOfShifts}
                     MenuProps={MenuProps}
                     input={<OutlinedInput label="Name" />}
                     onChange={(event) =>
