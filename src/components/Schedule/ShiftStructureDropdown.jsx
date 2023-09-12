@@ -6,6 +6,7 @@ import { updateSelectedStructureId } from "../../helpers/redux/slices/shiftStruc
 
 const ShiftStructureDropdown = ({ shiftStructures }) => {
   const [selectedStructure, setSelectedStructure] = useState(null);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const selectedValue = event.target.value;
