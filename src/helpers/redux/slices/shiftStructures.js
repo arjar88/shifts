@@ -7,7 +7,7 @@ export const shiftStructureSlice = createSlice({
     shiftStructures: [
       {
         id: 53495,
-        name: "primary shift",
+        name: "primary",
         structure: [
           //when the user selects the number of shifts,the corresponding
           //index in workersPerShift property will show how many there are
@@ -22,7 +22,7 @@ export const shiftStructureSlice = createSlice({
       },
       {
         id: 4566,
-        name: "secondary shift",
+        name: "secondary",
         structure: [
           { day: "Sunday", numOfShifts: null, workersPerShift: [] },
           { day: "Monday", numOfShifts: null, workersPerShift: [] },
@@ -35,7 +35,7 @@ export const shiftStructureSlice = createSlice({
       },
       {
         id: 45664,
-        name: "random shift",
+        name: "random",
         structure: [
           { day: "Sunday", numOfShifts: null, workersPerShift: [] },
           { day: "Monday", numOfShifts: null, workersPerShift: [] },
@@ -48,7 +48,7 @@ export const shiftStructureSlice = createSlice({
       },
       {
         id: 98233,
-        name: "night shift",
+        name: "night",
         structure: [
           { day: "Sunday", numOfShifts: null, workersPerShift: [] },
           { day: "Monday", numOfShifts: null, workersPerShift: [] },
