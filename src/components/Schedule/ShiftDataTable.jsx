@@ -12,7 +12,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateShiftStructure } from "../../helpers/redux/slices/shiftStructures";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

@@ -1,11 +1,15 @@
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateSelectedStructureId } from "../../helpers/redux/slices/shiftStructures";
 
-const ShiftStructureDropdown = ({ shiftStructures }) => {
+const ShiftStructureDropdown = () => {
+  console.log("shiftStructure component was re rendered");
   const [selectedStructure, setSelectedStructure] = useState(null);
+  const { shiftStructures } = useSelector((state) => state.shiftStructures);
+
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const selectedValue = event.target.value;
