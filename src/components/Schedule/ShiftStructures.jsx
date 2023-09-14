@@ -31,7 +31,7 @@ const ShiftStructures = () => {
         justifyContent="flex-start"
         sx={{ marginTop: "-1.5em", marginRight: "-8.5em" }}
       >
-        <WorkersPerShiftModal />
+        <WorkersPerShiftModal selectedStructureId={selectedStructureId} />
       </Grid>
     </Grid>
   );
