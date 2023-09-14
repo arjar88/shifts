@@ -46,7 +46,6 @@ const ShiftDataTable = ({ shiftStructures, selectedStructureId }) => {
     (s) => s.id === selectedStructureId
   );
   const structure = selectedStructure ? selectedStructure.structure : [];
-  console.log(structure, "structure");
 
   const dispatch = useDispatch();
   const numOfShifts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -72,14 +71,6 @@ const ShiftDataTable = ({ shiftStructures, selectedStructureId }) => {
   };
 
   const styles = {
-    buttonStyles: {
-      height: "1.6em",
-      width: "12.5em",
-      textTransform: "none",
-      color: "white",
-      backgroundColor: "#42adf5",
-      marginTop: "1em",
-    },
     selectStyle: {
       width: "11em",
       height: "3em",
@@ -136,15 +127,6 @@ const ShiftDataTable = ({ shiftStructures, selectedStructureId }) => {
                       </MenuItem>
                     ))}
                   </Select>
-                  {struc["numOfShifts"] && (
-                    <Button
-                      size="large"
-                      variant="contained"
-                      sx={styles.buttonStyles}
-                    >
-                      Number Of Workers
-                    </Button>
-                  )}
                 </StyledTableCell>
               ))}
           </StyledTableRow>
