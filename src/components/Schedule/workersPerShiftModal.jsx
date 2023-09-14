@@ -17,11 +17,12 @@ const styles = {
     position: "absolute",
     top: "50%",
     left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
+    transform: "translate(-40%, -50%)",
+    width: "60em",
+    height: "40em",
+    borderRadius: 7, // Adjust this value to control the roundness
     bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
+    boxShadow: 14,
     p: 4,
   },
 };
@@ -49,12 +50,15 @@ const WorkersPerShiftModal = ({ selectedStructureId }) => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={styles.box}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+            ></Typography>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 2 }}
+            ></Typography>
           </Box>
         </Modal>
       </div>
