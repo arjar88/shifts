@@ -2,12 +2,14 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import { ImCross } from "react-icons/im";
 import Modal from "@mui/material/Modal";
 
 const styles = {
   buttonStyles: {
     height: "1.6em",
-    width: "12.5em",
+    width: "19em",
     textTransform: "none",
     color: "white",
     backgroundColor: "#42adf5",
@@ -18,12 +20,12 @@ const styles = {
     top: "50%",
     left: "50%",
     transform: "translate(-40%, -50%)",
-    width: "60em",
+    width: "65em",
     height: "40em",
-    borderRadius: 7, // Adjust this value to control the roundness
+    borderRadius: 7,
     bgcolor: "background.paper",
     boxShadow: 14,
-    p: 4,
+    p: 3,
   },
 };
 
@@ -41,7 +43,7 @@ const WorkersPerShiftModal = ({ selectedStructureId }) => {
           variant="contained"
           sx={styles.buttonStyles}
         >
-          Number Of Workers
+          Set Number Of Workers Per Shift
         </Button>
         <Modal
           open={open}
@@ -50,15 +52,11 @@ const WorkersPerShiftModal = ({ selectedStructureId }) => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={styles.box}>
-            <Typography
-              id="modal-modal-title"
-              variant="h6"
-              component="h2"
-            ></Typography>
-            <Typography
-              id="modal-modal-description"
-              sx={{ mt: 2 }}
-            ></Typography>
+            <Grid container>
+              <Grid container item justifyContent="flex-end">
+                <ImCross sx={{ paddingBottom: "7em" }} />
+              </Grid>
+            </Grid>
           </Box>
         </Modal>
       </div>
