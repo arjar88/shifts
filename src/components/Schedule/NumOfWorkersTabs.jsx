@@ -4,7 +4,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 const NumOfWorkersTabs = ({ structure }) => {
-  const [value, setValue] = useState(structure);
+  const [value, setValue] = useState(structure.structure[0]);
   console.log("structure:", structure);
   const handleChange = (event, newValue) => {
     setValue(newValue);
