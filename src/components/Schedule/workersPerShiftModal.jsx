@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { ImCross } from "react-icons/im";
 import Modal from "@mui/material/Modal";
+import NumOfWorkersTabs from "./NumOfWorkersTabs";
 
 const styles = {
   buttonStyles: {
@@ -27,12 +28,23 @@ const styles = {
     boxShadow: 14,
     p: 3,
   },
+  cancelIcon: {
+    paddingBottom: "7em",
+  },
+  modalTitle: {
+    fontSize: "2.2em",
+    fontWeight: 700,
+    fontFamily: "monospace",
+  },
 };
 
-const WorkersPerShiftModal = ({ selectedStructureId }) => {
+const WorkersPerShiftModal = ({ shiftStructures, selectedStructureId }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const selectedStructure = shiftStructures.find(
+    (s) => s.id === selectedStructureId
+  );
 
   return (
     selectedStructureId && (
@@ -53,8 +65,16 @@ const WorkersPerShiftModal = ({ selectedStructureId }) => {
         >
           <Box sx={styles.box}>
             <Grid container>
-              <Grid container item justifyContent="flex-end">
-                <ImCross sx={{ paddingBottom: "7em" }} />
+              <Grid container item justifyContent="space-between">
+                <Grid item>
+                  <Typography sx={styles.modalTitle}>
+                    Select Number Of Workers Per Shift
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <ImCross onClick={handleClose} sx={styles.cancelIcon} />
+                </Grid>
+                <NumOfWorkersTabs structure={selectedStructure} />
               </Grid>
             </Grid>
           </Box>
